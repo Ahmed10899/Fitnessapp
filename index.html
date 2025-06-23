@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  Fitness App </title>
+  <link rel="stylesheet" href="Fitnessapp.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body class="dark">
+
+  <header>
+    <h1> <i class="fa-solid fa-running"></i> Fitness FITX</h1>
+  </header>
+
+<section class="belohnungssystem">
+  <h2>Belohnung</h2>
+  <div class="diagramm-container">
+    <label>Punkte-Fortschritt:</label>
+    <div class="fortschritt">
+      <div class="balken"></div> 
+    </div>
+    <span class="punktzahl">0 / 350 Punkte</span> 
+  </div>
+</section>
+
+<div id="motivationsToast" class="motivations-toast">
+  <p id="motivationsMessage">Du hast dein Ziel fast erreicht! Weiter so!</p>
+</div>
+
+<section class="analyse-bereich">
+  <h2>📊 Wochenstatistik</h2>
+  <div class="statistik-container">
+    <canvas id="wochenDiagramm"></canvas>
+  </div>
+
+
+  <main class="container">
+
+    <section class="wochenplan">
+      <h2>Wochenübersicht</h2>
+      <div class="wochen-grid fancy">
+        <div class="wochentag cardio">
+          <div class="icon-circle"><i class="fa-solid fa-running"></i></div>
+          <span class="tag-name">Mo</span>
+          <p>Joggen</p>
+        </div>
+        <div class="wochentag pause">
+          <div class="icon-circle"><i class="fa-solid fa-bed"></i></div>
+          <span class="tag-name">Di</span>
+          <p>Pause</p>
+        </div>
+        <div class="wochentag erholung">
+          <div class="icon-circle"><i class="fa-solid fa-spa"></i></div>
+          <span class="tag-name">Mi</span>
+          <p>Yoga</p>
+        </div>
+        <div class="wochentag kraft">
+          <div class="icon-circle"><i class="fa-solid fa-dumbbell"></i></div>
+          <span class="tag-name">Do</span>
+          <p>Kraft</p>
+        </div>
+        <div class="wochentag cardio">
+          <div class="icon-circle"><i class="fa-solid fa-bicycle"></i></div>
+          <span class="tag-name">Fr</span>
+          <p>Radfahren</p>
+        </div>
+        <div class="wochentag pause">
+          <div class="icon-circle"><i class="fa-solid fa-bed"></i></div>
+          <span class="tag-name">Sa</span>
+          <p>Pause</p>
+        </div>
+        <div class="wochentag erholung">
+          <div class="icon-circle"><i class="fa-solid fa-hiking"></i></div>
+          <span class="tag-name">So</span>
+          <p>Wandern</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="training-karten">
+      <h2>Meine Trainings</h2>
+      <div class="karten-container">
+      </div>
+    </section>
+
+   
+
+
+    <section class="eingabe-formular">
+      <h2>Trainingseinheit hinzufügen</h2>
+      <form>
+        <label for="datum"><i class="fa-regular fa-calendar-days"></i> <strong>Datum</strong></label>
+        <input type="date" name="datum" id="datum" required>
+    
+        <label for="aktivität"><i class="fa-solid fa-dumbbell"></i> <strong>Aktivität</strong></label>
+        <select name="aktivität" id="aktivität" required>
+          <option value="">Wähle eine Aktivität...</option>
+          <option value="Joggen">🏃 Joggen</option>
+          <option value="Yoga">🧘 Yoga</option>
+          <option value="Krafttraining">💪 Krafttraining</option>
+          <option value="Radfahren">🚴 Radfahren</option>
+          <option value="Wandern"> 🚶‍♂️ Wandern</option>
+
+
+        </select>
+    
+        <label for="dauer">
+          <i class="fa-solid fa-stopwatch"></i> <strong>Dauer:</strong> 
+          <output id="dauerWert" for="dauer"> <strong></strong></output> <strong>Minuten</strong>
+      </label> 
+      <input type="range" name="dauer" id="dauer" min="0" max="1440" step="1" value="0">
+      
+      <label for="kalorien">
+          <i class="fa-solid fa-fire"></i> <strong>Kalorienverbrauch</strong>
+      </label>
+      <input type="number" name="kalorien" id="kalorien" placeholder="z. B. 250 kcal" min="0" required>
+      
+      <label for="bewertung">
+          <i class="fa-solid fa-face-smile"></i> <strong>Intensität</strong> 
+      </label>
+      <select name="bewertung" id="bewertung">
+          <option value="">Keine Angabe</option>
+          <option value="leicht">🟢 Leicht</option>
+          <option value="mittel">🟡 Mittel</option>
+          <option value="intensiv">🔴 Intensiv</option>
+      </select>
+      
+      <label for="startzeit"><i class="fa-solid fa-clock"></i> <strong>Startzeit</strong></label>
+      <input type="time" name="startzeit" id="startzeit">
+      
+      <label for="endzeit"><i class="fa-regular fa-clock"></i> <strong>Endzeit</strong></label>
+      <input type="time" name="endzeit" id="endzeit">
+
+<label for="notiz"><i class="fa-solid fa-pen"></i> <strong>Notiz</strong></label>
+        <textarea name="notiz" id="notiz" placeholder="Gedanken, Gefühl oder Fortschritt festhalten..." rows="3"></textarea>
+
+    
+        <div class="button-group">
+          <button type="button" ><i class="fa-solid fa-plus"></i> CREATE</button>
+        </div>
+
+        
+      </form>
+    </section>
+
+    
+    
+  </main>
+
+</body>
+
+<script src="Fitnessapp.js"></script>
+<footer style="background: linear-gradient(to right, #f7f9f9, #eefaf1); padding: 3rem 1.5rem; margin-top: 5rem; font-family: 'Segoe UI', sans-serif; color: #2b2b2b; border-top: 1px solid #ccc; box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);">
+  <div style="max-width: 1000px; margin: auto; display: flex; flex-direction: column; gap: 2rem;">
+
+    <h2 style="text-align: center; font-size: 1.8rem; font-weight: 600; color: #2e7d32; margin-bottom: 1rem;">
+      📄 Impressum & Projektinformation
+    </h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; font-size: 1rem; line-height: 1.7;">
+      <div>
+        <h3 style="margin-bottom: 0.5rem; color: #4caf50;">📌 Studienprojekt</h3>
+        <p><strong>Projektname:</strong><br>FitnessApp FITX – Interaktive Trainingsplanung</p>
+        <p><strong>Modul:</strong><br>Internettechnologie (SoSe 2025)</p>
+        <p><strong>Abgabedatum:</strong><br>12. Juni 2025</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 0.5rem; color: #4caf50;">👤 Verantwortlich</h3>
+        <p><strong>Student:</strong><br>Ahmed Tarek</p>
+        <p><strong>Matrikel-Nr:</strong><br>6047981 </p>
+        <p><strong>Dozent:</strong><br>David Röskamm</p>
+        <p><strong>Hochschule:</strong><br>Jade Hochschule – Standort Wilhelmshaven</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 0.5rem; color: #4caf50;">🛠️ Technologien</h3>
+        <p>HTML5, CSS3, JavaScript, Chart.js, JSON, FETCH API, PHP</p>
+        <p><strong>Quellen:</strong><br>
+          <a href="https://fontawesome.com/" target="_blank" style="color: #2e7d32; text-decoration: none;">Font Awesome</a> – Icons<br>
+          <a href="https://www.chartjs.org/" target="_blank" style="color: #2e7d32; text-decoration: none;">Chart.js</a> – Diagramme
+        </p>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 2rem;">
+      <p>Diese Applikation wurde im Rahmen einer Studienleistung im Modul "Internettechnologie" entwickelt. </p>
+    </div>
+  </div>
+</footer>
+
+</html>
